@@ -18,7 +18,7 @@ class suggest(commands.Cog):
         AArtist = ""
         AGender = ""
         while (AArtist != "cancel") and (AGender != "cancel"):
-            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
+            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`!'))
             QGroup = discord.Embed(color=random.choice(embedcolours), title="Group Name (Without special characters):")
             await ctx.send(embed=QGroup)
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
@@ -86,7 +86,7 @@ class suggest(commands.Cog):
         AArtist = ""
         AGender = ""
         while (AArtist != "cancel") and (AGender != "cancel"):
-            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the soloist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
+            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the soloist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`!   '))
             QGroup = discord.Embed(color=random.choice(embedcolours), title="Soloist Name (Without special characters):")
             await ctx.send(embed=QGroup)
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
@@ -159,7 +159,7 @@ class suggest(commands.Cog):
     async def card(self, ctx):
         print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card Suggestion started by {ctx.message.author}')
         while True:
-            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
+            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`!'))
             QGroup = discord.Embed(color=random.choice(embedcolours), title="Artist Name (Without special characters):")
             await ctx.send(embed=QGroup)
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
