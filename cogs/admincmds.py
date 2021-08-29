@@ -13,7 +13,7 @@ class admincmds(commands.Cog):
             pass
         else:
             try:
-                self.client.load_extension(f'rewrite.cogs.{module}')
+                self.client.load_extension(f'cogs.{module}')
             except Exception as e:
                 await ctx.send('{}: {}'.format(type(e).__name__, e))
             else:
@@ -25,7 +25,7 @@ class admincmds(commands.Cog):
             pass
         else:
             try:
-                self.client.unload_extension(f'rewrite.cogs.{module}')
+                self.client.unload_extension(f'cogs.{module}')
             except Exception as e:
                 await ctx.send('{}: {}'.format(type(e).__name__, e))
             else:
@@ -37,8 +37,8 @@ class admincmds(commands.Cog):
             pass
         else:
             try:
-                self.client.unload_extension(f'rewrite.cogs.{module}')
-                self.client.load_extension(f'rewrite.cogs.{module}')
+                self.client.unload_extension(f'cogs.{module}')
+                self.client.load_extension(f'cogs.{module}')
             except Exception as e:
                 await ctx.send('{}: {}'.format(type(e).__name__, e))
             else:
