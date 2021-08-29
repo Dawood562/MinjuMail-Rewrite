@@ -13,8 +13,6 @@ class suggest(commands.Cog):
     async def suggest(self, ctx):
         await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Suggestion', description='Missing arguments. Please use one of `group`, `drama`, or `soloist`.'))
     
-    
-    
     @suggest.group(aliases=['groups', 'g'])
     async def group(self, ctx):
         AArtist = ""
