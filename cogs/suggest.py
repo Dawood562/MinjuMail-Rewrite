@@ -19,7 +19,7 @@ class suggest(commands.Cog):
         AGender = ""
         while (AArtist != "cancel") and (AGender != "cancel"):
             await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
-            QGroup = discord.Embed(color=random.choice(embedcolours), title="Artist Name (Without special characters):")
+            QGroup = discord.Embed(color=random.choice(embedcolours), title="Group Name (Without special characters):")
             await ctx.send(embed=QGroup)
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
             AArtist = (MessageReply.content)
@@ -30,7 +30,7 @@ class suggest(commands.Cog):
             else:
                 pass
             ##################
-            QGender = discord.Embed(color=random.choice(embedcolours), title='Artist Gender (Male, Female, or Mixed):')
+            QGender = discord.Embed(color=random.choice(embedcolours), title='Group Gender (Male, Female, or Mixed):')
             await ctx.send(embed=QGender)
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
             AGender = (MessageReply.content)
