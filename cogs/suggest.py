@@ -32,15 +32,17 @@ class suggest(commands.Cog):
             ##################
             QGender = discord.Embed(color=random.choice(embedcolours), title='Group Gender (Male, Female, or Mixed):')
             await ctx.send(embed=QGender)
-            MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
-            AGender = (MessageReply.content)
-            # Check to cancel
-            if AGender.lower() == "cancel":
-                await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title="Group Suggestion", description="Suggestion process has been cancelled."))
-                break
-            else:
-                AGender = AGender.capitalize()
-                pass
+            while (AGender != "female") or (AGender != "male") or (AGender != "mixed"):
+                MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
+                AGender = (MessageReply.content)
+                # Making sure the answer is valid
+                if AGender.lower() == "cancel":
+                    await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title="Group Suggestion", description="Suggestion process has been cancelled."))
+                    break
+                elif (AGender.lower() == "female") or (AGender.lower() == "male") or (AGender.lower() == "mixed"):
+                    AGender = AGender.capitalize()
+                else:
+                    await ctx.send("That's not a valid input! Try again.")
 
             ECheck = discord.Embed(title="Card Suggestion", description="Please check the contents below to make sure everything is typed properly!", color=random.choice(embedcolours))
             ECheck.add_field(name="**Artist Name:**", value=f"{AArtist}", inline=False)
