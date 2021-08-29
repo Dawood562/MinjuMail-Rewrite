@@ -9,31 +9,40 @@ class admincmds(commands.Cog):
 
     @commands.command()
     async def load(self, ctx, module : str):
-        try:
-            self.client.load_extension(f'rewrite.cogs.{module}')
-        except Exception as e:
-            await ctx.send('{}: {}'.format(type(e).__name__, e))
+        if ctx.author.id != 221188745414574080:
+            pass
         else:
-            await ctx.send('Loaded cog.')
+            try:
+                self.client.load_extension(f'rewrite.cogs.{module}')
+            except Exception as e:
+                await ctx.send('{}: {}'.format(type(e).__name__, e))
+            else:
+                await ctx.send('Loaded cog.')
 
     @commands.command()
     async def unload(self, ctx, module : str):
-        try:
-            self.client.unload_extension(f'rewrite.cogs.{module}')
-        except Exception as e:
-            await ctx.send('{}: {}'.format(type(e).__name__, e))
+        if ctx.author.id != 221188745414574080:
+            pass
         else:
-            await ctx.send('Unloaded cog.')
+            try:
+                self.client.unload_extension(f'rewrite.cogs.{module}')
+            except Exception as e:
+                await ctx.send('{}: {}'.format(type(e).__name__, e))
+            else:
+                await ctx.send('Unloaded cog.')
 
     @commands.command(aliases=['reload'])
     async def _reload(self, ctx, module : str):
-        try:
-            self.client.unload_extension(f'rewrite.cogs.{module}')
-            self.client.load_extension(f'rewrite.cogs.{module}')
-        except Exception as e:
-            await ctx.send('{}: {}'.format(type(e).__name__, e))
+        if ctx.author.id != 221188745414574080:
+            pass
         else:
-            await ctx.send('Successfully reloaded cog.')
+            try:
+                self.client.unload_extension(f'rewrite.cogs.{module}')
+                self.client.load_extension(f'rewrite.cogs.{module}')
+            except Exception as e:
+                await ctx.send('{}: {}'.format(type(e).__name__, e))
+            else:
+                await ctx.send('Successfully reloaded cog.')
 
 
     @commands.command()
