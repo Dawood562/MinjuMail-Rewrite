@@ -9,7 +9,7 @@ class suggest(commands.Cog):
         self.client = client
 
         
-    @commands.group(invoke_without_command=True)
+    @commands.group(invoke_without_command=True, aliases=['s'])
     async def suggest(self, ctx):
         await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Suggestion', description='Missing arguments. Please use one of `group`, `drama`, or `soloist`.'))
     
