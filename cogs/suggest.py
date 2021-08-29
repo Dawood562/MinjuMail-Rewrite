@@ -20,13 +20,10 @@ class suggest(commands.Cog):
         AArtist = ""
         AGender = ""
         while (AArtist != "cancel") and (AGender != "cancel"):
-            await ctx.send('Suggest group yes? Group name?')
-            await ctx.send('Suggest group yes? Group gender?')
-            # sex
             await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
             QGroup = discord.Embed(color=random.choice(embedcolours), title="Artist Name (Without special characters):")
             await ctx.send(embed=QGroup)
-            MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
+            MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
             AArtist = (MessageReply.content)
             # Check to cancel
             if AArtist.lower() == "cancel":
@@ -37,7 +34,7 @@ class suggest(commands.Cog):
             ##################
             QGender = discord.Embed(color=random.choice(embedcolours), title='Artist Gender (Male, Female, or Mixed):')
             await ctx.send(embed=QGender)
-            MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
+            MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
             AGender = (MessageReply.content)
             # Check to cancel
             if AGender.lower() == "cancel":
@@ -56,19 +53,19 @@ class suggest(commands.Cog):
             await DMEmbed.add_reaction('✅')
             print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Adds both reactions')
             try:
-                reaction, user = await client.wait_for('reaction_add', check=lambda reaction, user: user == ctx.author,  timeout = 60.0)
+                reaction, user = await self.client.wait_for('reaction_add', check=lambda reaction, user: user == ctx.author,  timeout = 60.0)
             except asyncio.TimeoutError:
                 print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: A card suggestion by {ctx.message.author} timed out.')
                 return await ctx.send('Validation timed out. Please try again.')
             else:
                 if reaction.emoji == '✅':
                     await ctx.send("Thanks for the suggestion! It's been sent to the Minju Managers to verify the information!")
-                    await DMEmbed.remove_reaction('❌', client.user)
-                    await DMEmbed.remove_reaction('✅', client.user)
+                    await DMEmbed.remove_reaction('❌', self.client.user)
+                    await DMEmbed.remove_reaction('✅', self.client.user)
 
                     ECheck.set_footer(text=f'Suggested by {ctx.author} ({ctx.author.id})')
                     ECheck.set_author(name=f'{ctx.message.channel.id}/{DMEmbed.id}')
-                    CHECKEmbed = await client.get_channel(861687628881199104).send(f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
+                    CHECKEmbed = await self.client.get_channel(861687628881199104).send(f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
                     await CHECKEmbed.edit(content=f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).\nUse `_accept {CHECKEmbed.id}` or `_reject {CHECKEmbed.id}` to accept or reject this card suggestion.\nAlso remember that they can't submit special characters so don't reject for that!", embed=ECheck)
                     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card suggestion by {ctx.message.author} has been sent to the checking channel.')
                     break
@@ -76,8 +73,8 @@ class suggest(commands.Cog):
                     # Remove all reactions
                     CLDEmbed = discord.Embed(title='Card suggestion has been cancelled.', description='Please reuse the command to redo your entries!', color=random.choice(embedcolours))
                     await DMEmbed.edit(embed=CLDEmbed)
-                    await DMEmbed.remove_reaction('❌', client.user)
-                    await DMEmbed.remove_reaction('✅', client.user)
+                    await DMEmbed.remove_reaction('❌', self.client.user)
+                    await DMEmbed.remove_reaction('✅', self.client.user)
                     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card suggestion by {ctx.message.author} has been cancelled.')
                     break
 
