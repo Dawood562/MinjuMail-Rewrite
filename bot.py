@@ -66,7 +66,7 @@ async def on_command_error(ctx, error):
         except discord.HTTPException:
             pass
     elif isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Missing Arguments', description='If you need help with a command, ask or check the help command!'))
+        await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title=f'Missing Arguments in {ctx.command}', description='If you need help with a command, use `_help`!'))
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
