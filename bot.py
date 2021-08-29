@@ -38,6 +38,38 @@ cogs = ["acceptreject", "admincmds", "errorhandling", "help", "report", "suggest
 for cog in cogs:
     client.load_extension("cogs." + cog)
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Loaded {cog} cog')
+    
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.PrivateMessageOnly):
+        try:
+            await ctx.send(f'DM me to use commands {ctx.author.mention}!')
+            await client.get_user(ctx.author.id).send('Use this channel to send me commands!')
+        except discord.HTTPException:
+            pass
+    elif isinstance(error, commands.CommandOnCooldown):
+        try:
+            tleft = float(f'{error.retry_after:.2f}')
+            minsleft = int(tleft//60)
+            sleft = round(tleft%60, 2)
+            if minsleft == 0:
+                tlstring = f'{sleft} seconds'
+            elif minsleft == 1 and sleft == 1:
+                tlstring = f'1 minute **and** 1 second'
+            elif minsleft == 1:
+                tlstring = f'1 minute **and** {sleft} seconds'
+            elif sleft == 1:
+                tlstring = f'{minsleft} minutes and 1 second'
+            else:    
+                tlstring = f'{minsleft} minutes **and** {sleft} seconds'
+            await ctx.send(f"You're on cooldown for another **{tlstring}** {ctx.author.mention}!")
+        except discord.HTTPException:
+            pass
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Missing Arguments', description='If you need help with a command, ask or check the help command!'))
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 # --Start bot--
 client_token = os.environ.get("TOKEN")
