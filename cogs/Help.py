@@ -47,7 +47,7 @@ class MyHelp(commands.HelpCommand):
         for i in range(len(scmdname)):
             embed.add_field(name=f'{scmdname[i]}', value=f"{scmddesc[i]}", inline=True)
         ctx = HelpCommand.context
-        embed.set_author(name='Help, icon_url=ctx.author.avatar_url)
+        embed.set_author(name='Help', icon_url=ctx.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
     
