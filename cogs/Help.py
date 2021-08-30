@@ -45,7 +45,7 @@ class MyHelp(commands.HelpCommand):
         command_signatures = [self.get_command_signature(command) for command in group.commands]
         embed = discord.Embed(title=f'Help for {group}', description=f'**{group.description}**', color=random.choice(embedcolours))
         for i in range(len(scmdname)):
-            embed.add_field(name=f'{scmdname[i]}', value=f"{scmddesc[i]}", inline=True)
+            embed.add_field(name=f'{scmdname[i].capitalize()}', value=f"{scmddesc[i]}", inline=True)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
