@@ -8,9 +8,17 @@ ccids = [364045258004365312, 167625500498329600, 221188745414574080, 69495367971
 
 
 class MyHelp(commands.HelpCommand):
+    def get_command_signature(self, command):
+        return '%s%s %s' % (self.clean_prefix, command.qualified_name, command.signature)
+
     async def send_bot_help(self, mapping):
-        channel = self.get_destination()
-        await channel.send("hey")
+        embed = discord.Embed(title="Help")
+        for cog, commands in mapping.items():
+            filtered = await self.filter_commands(commands, sort=True)
+            command_signatures = [self.get_command_signature(c) for c in filtered]
+                if command_signatures:
+                    cog_name = getattr(cog, "qualified_name", "No Category")
+                    embed.add_field(name=cog_name, value="\n".join(command_signatures), inline=False)
 
     async def on_help_command_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
