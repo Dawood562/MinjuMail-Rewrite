@@ -6,7 +6,7 @@ import random
 embedcolours = [discord.Color.from_rgb(217,89,140), discord.Color.from_rgb(241,210,231), discord.Color.from_rgb(243,170,81), discord.Color.from_rgb(252,246,149), discord.Color.from_rgb(86,122,206), discord.Color.from_rgb(183,211,233), discord.Color.from_rgb(187,176,220), discord.Color.from_rgb(219,112,108), discord.Color.from_rgb(241,195,170), discord.Color.from_rgb(206,229,213), discord.Color.from_rgb(254,254,254), discord.Color.from_rgb(167,224,225)]
 staffids = [389897179701182465, 221188745414574080, 303901339891531779, 257900648618655746, 193962293342502912, 364045258004365312, 297278578435948545]
 
-class Accept_and_Reject(commands.Cog):
+class Accept_and_Reject(commands.Cog, name='👑 Accept and Reject'):
     """Admin Commands: Accept and reject bug reports and card suggestions."""
     def __init__(self, client):
         self.client = client
