@@ -40,7 +40,7 @@ class MyHelp(commands.HelpCommand):
     async def send_group_help(self, group):
         scmdname = [command.name for index, command in enumerate(group.commands)]
         scmddesc = [command.description for index, command in enumerate(group.commands)]
-        command_signatures = [self.get_command_signature(command) for command in group.get_commands()]
+        command_signatures = [self.get_command_signature(command) for command in group.commands()]
         await self.get_destination().send(f'{group.name}: {subcommands}')
         embed = discord.Embed(title=f'Help for {group}', description=f'**{group.description}**')
         for i in range(len(scmd)-1):
