@@ -10,7 +10,6 @@ ccids = [364045258004365312, 167625500498329600, 221188745414574080, 69495367971
 class MyHelp(commands.HelpCommand):
     def get_command_signature(self, command):
         return '{0.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
-
     
     # _help
     async def send_bot_help(self, mapping):
@@ -19,8 +18,8 @@ class MyHelp(commands.HelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             command_signatures = [self.get_command_signature(c) for c in filtered]
             if command_signatures:
-                cog_name = getattr(cog, "qualified_name", "No Category")
-                embed.add_field(name=f'a{cog_name}', value="\n".join(command_signatures), inline=False)
+                cog_name = getattr(cog, "qualified_name", "Miscellaneous")
+                embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=False)
         await self.get_destination().send(embed=embed)
                 
     # _help <cog name>
