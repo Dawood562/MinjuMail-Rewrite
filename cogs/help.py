@@ -19,8 +19,8 @@ class help(commands.Cog):
             HelpEmbed.add_field(name='Card Creators', value='ingame', inline=True)
     
     
-    @help.commands(aliases=['t'])
-    async def try(self, ctx):
+    @help.group(aliases=['t'])
+    async def help(self, ctx):
         HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Help', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
         HelpEmbed.add_field(name='Description', value='Get help with commands.')
         HelpEmbed.add_field(name='Alias', value='h')
@@ -29,7 +29,7 @@ class help(commands.Cog):
                             
                             
                             
-    @help.commands(aliases=['r'])
+    @help.group(aliases=['r'])
     async def report(self, ctx):
         HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Report', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
         HelpEmbed.add_field(name='Description', value='Suggest a group, soloist, or k-drama to be added to Minju bot!')
@@ -38,7 +38,7 @@ class help(commands.Cog):
         HelpEmbed.add_field(name='Usage', value='`_report` `<bug|player|scam>`')
     
     
-    @help.commands(aliases=['s'])
+    @help.group(aliases=['s'])
     async def suggest(self, ctx):
         HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Suggest', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
         HelpEmbed.add_field(name='Description', value='Suggest a group, soloist, or k-drama to be added to Minju bot!')
