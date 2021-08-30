@@ -45,7 +45,7 @@ class MyHelp(commands.HelpCommand):
             raise error
 
 
-class help(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -55,4 +55,4 @@ class help(commands.Cog):
         self.client.help_command = help_command
 
 def setup(client):
-    client.add_cog(help(client))
+    client.add_cog(Help(client))
