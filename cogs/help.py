@@ -16,9 +16,9 @@ class MyHelp(commands.HelpCommand):
         for cog, commands in mapping.items():
             filtered = await self.filter_commands(commands, sort=True)
             command_signatures = [self.get_command_signature(c) for c in filtered]
-                if command_signatures:
-                    cog_name = getattr(cog, "qualified_name", "No Category")
-                    embed.add_field(name=cog_name, value="\n".join(command_signatures), inline=False)
+            if command_signatures:
+                cog_name = getattr(cog, "qualified_name", "No Category")
+                embed.add_field(name=cog_name, value="\n".join(command_signatures), inline=False)
 
     async def on_help_command_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
