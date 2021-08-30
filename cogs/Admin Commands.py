@@ -3,8 +3,7 @@ import os
 from datetime import datetime
 from discord.ext import commands
 
-class Admin_Commands(commands.Cog):
-    """Admin Commands: Load/unload cogs and shut the bot down."""
+class Admin_Commands(commands.Cog, name='👑 Admin Commands', description='Admin Commands: Load/unload cogs and shut the bot down.'):
     def __init__(self, client):
         self.client = client
 
