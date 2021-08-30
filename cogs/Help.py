@@ -38,7 +38,7 @@ class MyHelp(commands.HelpCommand):
         if command_signatures:
             desc = '\n'.join(command_signatures)
         embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
-    
+        await self.get_destination().send(embed=embed)
     
     # _help <group name>
     async def send_group_help(self, group):
