@@ -16,7 +16,7 @@ attributes = {
 class MyHelp(commands.HelpCommand):
     """Get help with commands!"""
     def get_command_signature(self, command):
-        return '{0.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
+        return '`{0.clean_prefix}{1.qualified_name}` `{1.signature}`'.format(self, command)
     
     # _help
     async def send_bot_help(self, mapping):
