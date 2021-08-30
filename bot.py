@@ -31,7 +31,6 @@ intents.members = True
 
 @client.event
 async def on_ready():
-    await client.change_presence(
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Bot is ready!')
 # --Load cogs--
 cogs = ["Accept and Reject", "Admin Commands", "Help", "Misc Commands", "Reporting", "Suggest Cards", "tickets"]
