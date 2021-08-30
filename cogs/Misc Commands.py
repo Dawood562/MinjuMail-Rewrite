@@ -20,7 +20,7 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
         embed = discord.Embed(title='Bot Information')
         embed.set_author(name='Bot', icon_url=ctx.author.avatar_url)
         embed.add_field(name='Latency', value=f'{round(self.client.latency*1000, 1)}ms', inline=True)
-        embed.add_field(name='Members in Minju Support', value=f'{client.get_guild(714926445595721820).member_count}', inline=True)
+        embed.add_field(name='Members in Minju Support', value=f'{self.client.get_guild(714926445595721820).member_count}', inline=True)
 
         delta_uptime = datetime.utcnow() - bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
