@@ -6,46 +6,28 @@ staffids = [389897179701182465, 221188745414574080, 303901339891531779, 25790064
 ccids = [364045258004365312, 167625500498329600, 221188745414574080, 694953679719104544, 164795852785844225, 257900648618655746, 464113463468359690, 496650374741229569, 573854828363776006, 721247603290931200, 482613393803444227, 163608986401243136, 219668296834875403, 675867865701679176, 384584297090252813, 738473939168133211]
 
 
+
+class MyHelp(commands.HelpCommand):
+    async def send_bot_help(self, mapping):
+        channel = self.get_destination()
+        await channel.send("hey")
+
+    async def on_help_command_error(self, ctx, error):
+        if isinstance(error, commands.BadArgument):
+            embed = discord.Embed(title="Error", description=str(error))
+            await ctx.send(embed=embed)
+        else:
+            raise error
+
+
 class help(commands.Cog):
     def __init__(self, client):
         self.client = client
-    
-    @commands.group(aliases=['h'], invoke_without_command=True)
-    async def help(self, ctx):
-        HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='List of all commands', description='help\nreport\nsuggest\n')
-        if ctx.author.id in staffids:
-            HelpEmbed.add_field(name='Admin', value='accept\nload\nreject\nreload\nunload', inline=True)
-        if ctx.author.id in ccids:
-            HelpEmbed.add_field(name='Card Creators', value='ingame', inline=True)
-    
-    
-    @help.group(aliases=['h'])
-    async def help(self, ctx):
-        HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Help', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
-        HelpEmbed.add_field(name='Description', value='Get help with commands.')
-        HelpEmbed.add_field(name='Alias', value='h')
-        HelpEmbed.add_field(name='Valid Arguments', value='Any command.')
-        HelpEmbed.add_field(name='Usage', value='`_help` `[command_name]`')
-                            
-                            
-                            
-    @help.group(aliases=['r'])
-    async def report(self, ctx):
-        HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Report', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
-        HelpEmbed.add_field(name='Description', value='Suggest a group, soloist, or k-drama to be added to Minju bot!')
-        HelpEmbed.add_field(name='Alias', value='s')
-        HelpEmbed.add_field(name='Valid Arguments', value='`bug`/`b`\n`player`/`user`\n`scam`')
-        HelpEmbed.add_field(name='Usage', value='`_report` `<bug|player|scam>`')
-    
-    
-    @help.group(aliases=['s'])
-    async def suggest(self, ctx):
-        HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Suggest', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
-        HelpEmbed.add_field(name='Description', value='Suggest a group, soloist, or k-drama to be added to Minju bot!')
-        HelpEmbed.add_field(name='Alias', value='s')
-        HelpEmbed.add_field(name='Valid Arguments', value='`drama`/`k-drama`/`d`/`k`\n`group`/`groups`/`g`\n`soloist`/`solo`/`s`')
-        HelpEmbed.add_field(name='Usage', value='`_suggest` `<drama|group|soloist>`')
-        
-        
+
+       # Setting the cog for the help
+       help_command = MyHelp()
+       help_command.cog = self # Instance of YourCog class
+       self.client.help_command = help_command
+
 def setup(client):
     client.add_cog(help(client))
