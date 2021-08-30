@@ -23,7 +23,7 @@ class MyHelp(commands.HelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             command_signatures = [self.get_command_signature(c) for c in filtered]
             if command_signatures:
-                cog_name = getattr(cog, "qualified_name", "Miscellaneous").replace('_', ' ')
+                cog_name = getattr(cog, "qualified_name", "Miscellaneous")
                 embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
                 await self.get_destination().send(f'{cog_name}, {cog.__doc__}')
         await self.get_destination().send(embed=embed)
