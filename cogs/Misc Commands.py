@@ -31,6 +31,12 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         uptime = f'{days}d, {hours}h, {minutes}m, {seconds}s'
+        if days == 0:
+            uptime = f'{hours}h, {minutes}m, {seconds}s'
+        if hours == 0:
+            uptime = f'{minutes}minutes, {seconds}seconds'
+        if minutes == 0:
+            uptime = f'{seconds} seconds'
         embed.add_field(name='Uptime', value=f'{uptime}', inline=True)
 
         embed.add_field(name='Members in Minju Support', value=f'{self.client.get_guild(714926445595721820).member_count} players', inline=True)
