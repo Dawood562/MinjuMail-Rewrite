@@ -53,7 +53,7 @@ class MyHelp(commands.HelpCommand):
             raise error
 
 
-class Help(commands.Cog, name='🤔 Help', description='Get help with commands!'):
+class Help(commands.Cog, name='🤔 Help'):
     """Get help with commands!"""
     def __init__(self, client):
         self.client = client
