@@ -7,7 +7,7 @@ ccids = [364045258004365312, 167625500498329600, 221188745414574080, 69495367971
 
 
 
-class MyHelp(commands.HelpCommand, name='Help', description='Shows help for commands.')
+class MyHelp(commands.HelpCommand, name='Help', description='Shows help for commands.'):
     def get_command_signature(self, command):
         return '{0.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
     
