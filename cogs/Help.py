@@ -25,6 +25,7 @@ class MyHelp(commands.HelpCommand):
             if command_signatures:
                 cog_name = getattr(cog, "qualified_name", "Miscellaneous").replace('_', ' ')
                 embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
+                await self.get_destination().send(f'{cog_name}, {cog.__doc__}')
         await self.get_destination().send(embed=embed)
                 
     # _help <cog name>
