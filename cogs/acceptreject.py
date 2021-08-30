@@ -10,6 +10,7 @@ class acceptreject(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @commands.has_role(750430586560053359)
     @commands.command()
     async def accept(self, ctx, msgid: int):
         if ctx.author.id in staffids:
@@ -66,6 +67,7 @@ class acceptreject(commands.Cog):
         else:
             await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
+    @commands.has_role(750430586560053359)
     @commands.command(aliases=['deny'])
     async def reject(self, ctx, msgid: int):
         if ctx.author.id in staffids:
