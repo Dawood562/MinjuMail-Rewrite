@@ -25,9 +25,9 @@ class help(commands.Cog):
         self.client = client
 
        # Setting the cog for the help
-       help_command = MyHelp()
-       help_command.cog = self # Instance of YourCog class
-       self.client.help_command = help_command
+        help_command = MyHelp()
+        help_command.cog = self # Instance of YourCog class
+        self.client.help_command = help_command
 
 def setup(client):
     client.add_cog(help(client))
