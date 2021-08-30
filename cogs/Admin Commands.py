@@ -58,7 +58,7 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
             os.execv('python bot.py')
 
     @commands.has_role(737604230759841792)
-    @commands.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo', 'JaljayoUriKkumsogeseo', 'jaljayourikkumsogeseo'])
+    @commands.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo', 'JaljayoUriKkumsogeseo'])
     async def shutdown(self, ctx):
         if (ctx.message.author.id != 221188745414574080) and (ctx.message.author.id != 303901339891531779):
             print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: {ctx.message.author} tried to shut the bot down lol')
