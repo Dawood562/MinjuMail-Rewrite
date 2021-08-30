@@ -7,6 +7,7 @@ embedcolours = [discord.Color.from_rgb(217,89,140), discord.Color.from_rgb(241,2
 staffids = [389897179701182465, 221188745414574080, 303901339891531779, 257900648618655746, 193962293342502912, 364045258004365312, 297278578435948545]
 
 class Accept_and_Reject(commands.Cog):
+    """Admin Commands: Accept and reject bug reports and card suggestions."""
     def __init__(self, client):
         self.client = client
 
