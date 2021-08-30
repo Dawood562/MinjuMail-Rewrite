@@ -56,6 +56,8 @@ class MyHelp(commands.HelpCommand):
     async def send_command_help(self, command):
         embed = discord.Embed(title=f"Help for {command.name}", description=f'Displaying help for {command.name}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
         embed.add_field(name='Description', value=command.description, inline=False)
+        print(command.aliases)
+        print(', '.join(command.aliases))
         embed.add_field(name='Aliases', value=', '.join(f'`{command.aliases}`'), inline=False)
         embed.add_field(name='Usage', value=self.get_command_signature(command), inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
