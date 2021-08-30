@@ -39,10 +39,10 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
             uptime = f'{seconds} seconds'
         embed.add_field(name='Uptime', value=f'{uptime}', inline=True)
 
-        embed.add_field(name='Members in Minju Support', value=f'{self.client.get_guild(714926445595721820).member_count} players', inline=True)
+        embed.add_field(name='M.S. Members', value=f'{sum(not m.bot for m in guild.members)} players', inline=True)
         await ctx.send(embed=embed)
 
-
+        # self.client.get_guild(714926445595721820).member_count
 
 def setup(client):
     client.add_cog(Misc_Commands(client))
