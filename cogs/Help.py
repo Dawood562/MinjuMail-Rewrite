@@ -34,7 +34,7 @@ class MyHelp(commands.HelpCommand):
         print([command for command in cog.get_commands()])
         print(cmdnames)
         for command in cog.get_commands():
-            command_signatures = [self.get_command_signature(c) for c in command]
+            command_signatures = [self.get_command_signature(command) for command]
             if command_signatures:
                 desc = '\n'.join(command_signatures)
         embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
