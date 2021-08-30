@@ -42,7 +42,7 @@ class MyHelp(commands.HelpCommand):
         scmddesc = [command.description for index, command in enumerate(group.commands)]
         command_signatures = [self.get_command_signature(command) for command in group.commands]
         embed = discord.Embed(title=f'Help for {group}', description=f'**{group.description}**')
-        for i in range(len(scmd)-1):
+        for i in range(len(scmdname)-1):
             embed.add_field(name=f'{scmdname[i]}', value=f"a{scmddesc[i]}", inline=True)
         await self.get_destination().send(embed=embed)
 
