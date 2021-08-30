@@ -33,7 +33,7 @@ class MyHelp(commands.HelpCommand):
         desc = ''
         for i in cmdnames:
             desc += i+'\n'
-        embed = discord.Embed(title=f'{cog[2:]} Help', description=f'')
+        embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
         await self.get_destination().send(embed=embed)
     
     
