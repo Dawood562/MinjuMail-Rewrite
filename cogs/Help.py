@@ -7,7 +7,7 @@ ccids = [364045258004365312, 167625500498329600, 221188745414574080, 69495367971
 
 
 
-class MyHelp(commands.HelpCommand):
+class MyHelp(commands.HelpCommand, name='Help', description='Shows help for commands.')
     def get_command_signature(self, command):
         return '{0.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
     
@@ -19,12 +19,14 @@ class MyHelp(commands.HelpCommand):
             command_signatures = [self.get_command_signature(c) for c in filtered]
             if command_signatures:
                 cog_name = getattr(cog, "qualified_name", "Miscellaneous").replace('_', ' ')
-                embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=False)
+                embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
         await self.get_destination().send(embed=embed)
                 
     # _help <cog name>
     async def send_cog_help(self, cog):
-        await self.get_destination().send(f'{cog.qualified_name}: {[command.name for command in cog.get_commands()]}')
+        cmdnames = [command.name for command in cog.get_commands()]
+        embed = discord.Embed(title=f'{cog} Help')
+        await self.get_destination().send(f'{cog.qualified_name}: {cmdnames}')
     
     
     # _help <group name>
