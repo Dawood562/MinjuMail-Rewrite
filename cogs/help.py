@@ -21,7 +21,7 @@ class MyHelp(commands.HelpCommand):
             if command_signatures:
                 cog_name = getattr(cog, "qualified_name", "No Category")
                 embed.add_field(name=f'a{cog_name}', value="\n".join(command_signatures), inline=False)
-
+        await self.get_destination().send(embed=embed)
                 
     # _help <cog name>
     async def send_cog_help(self, cog):
