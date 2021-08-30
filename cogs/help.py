@@ -19,8 +19,8 @@ class help(commands.Cog):
             HelpEmbed.add_field(name='Card Creators', value='ingame', inline=True)
     
     
-    @help.commands(aliases=['h'])
-    async def help(self, ctx):
+    @help.commands(aliases=['t'])
+    async def try(self, ctx):
         HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Help', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
         HelpEmbed.add_field(name='Description', value='Get help with commands.')
         HelpEmbed.add_field(name='Alias', value='h')
