@@ -25,7 +25,7 @@ class help(commands.Cog):
         HelpEmbed.add_field(name='Description', value='Get help with commands.')
         HelpEmbed.add_field(name='Alias', value='h')
         HelpEmbed.add_field(name='Valid Arguments', value='Any command.')
-        HelpEmbed.add_field(name='Usage', value='`_help` `[command_name]`'
+        HelpEmbed.add_field(name='Usage', value='`_help` `[command_name]`')
                             
                             
                             
@@ -35,7 +35,7 @@ class help(commands.Cog):
         HelpEmbed.add_field(name='Description', value='Suggest a group, soloist, or k-drama to be added to Minju bot!')
         HelpEmbed.add_field(name='Alias', value='s')
         HelpEmbed.add_field(name='Valid Arguments', value='`bug`/`b`\n`player`/`user`\n`scam`')
-        HelpEmbed.add_field(name='Usage', value='`_report` `<bug|player|scam>`'
+        HelpEmbed.add_field(name='Usage', value='`_report` `<bug|player|scam>`')
     
     
     @help.commands(aliases=['s'])
@@ -44,7 +44,7 @@ class help(commands.Cog):
         HelpEmbed.add_field(name='Description', value='Suggest a group, soloist, or k-drama to be added to Minju bot!')
         HelpEmbed.add_field(name='Alias', value='s')
         HelpEmbed.add_field(name='Valid Arguments', value='`drama`/`k-drama`/`d`/`k`\n`group`/`groups`/`g`\n`soloist`/`solo`/`s`')
-        HelpEmbed.add_field(name='Usage', value='`_suggest` `<drama|group|soloist>`'
+        HelpEmbed.add_field(name='Usage', value='`_suggest` `<drama|group|soloist>`')
         
         
 def setup(client):
