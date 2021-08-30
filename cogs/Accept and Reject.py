@@ -12,7 +12,7 @@ class Accept_and_Reject(commands.Cog, name='👑 Accept and Reject'):
         self.client = client
 
     @commands.has_role(750430586560053359)
-    @commands.command()
+    @commands.command(description='Accept a bug report/card suggestion.')
     async def accept(self, ctx, msgid: int):
         if ctx.author.id in staffids:
             asd = await self.client.get_channel(861687628881199104).fetch_message(msgid)
@@ -69,7 +69,7 @@ class Accept_and_Reject(commands.Cog, name='👑 Accept and Reject'):
             await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
     @commands.has_role(750430586560053359)
-    @commands.command(aliases=['deny'])
+    @commands.command(aliases=['deny'], description='Reject a bug report/card suggestion.')
     async def reject(self, ctx, msgid: int):
         if ctx.author.id in staffids:
             asd = await self.client.get_channel(861687628881199104).fetch_message(msgid)
