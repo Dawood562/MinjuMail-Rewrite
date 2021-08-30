@@ -19,7 +19,7 @@ class help(commands.Cog):
             HelpEmbed.add_field(name='Card Creators', value='ingame', inline=True)
     
     
-    @help.group(aliases=['t'])
+    @help.group(aliases=['h'])
     async def help(self, ctx):
         HelpEmbed = discord.Embed(color=random.choice(embedcolours), title='Help for Help', description='`<>` marks required parameters.\n`[]` marks optional parameters.')
         HelpEmbed.add_field(name='Description', value='Get help with commands.')
