@@ -33,11 +33,11 @@ class MyHelp(commands.HelpCommand):
         print(cog.get_commands())
         print([command for command in cog.get_commands()])
         print(cmdnames)
-        #for command in cog.get_commands():
-        #    command_signatures = [self.get_command_signature(c) for c in command]
-        #    if command_signatures:
-        #        desc = '\n'.join(command_signatures)
-        #embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
+        for command in cog.get_commands():
+            command_signatures = [self.get_command_signature(c) for c in command]
+            if command_signatures:
+                desc = '\n'.join(command_signatures)
+        embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
     
     
     # _help <group name>
