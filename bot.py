@@ -34,7 +34,7 @@ async def on_ready():
     await client.change_presence(activity = discord.Activity(type=discord.ActivityType.listening, name='DMs!'))
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Bot is ready!')
 # --Load cogs--
-cogs = ["acceptreject", "admincmds", "errorhandling", "help", "report", "suggest", "testcmds", "tickets"]
+cogs = ["acceptreject", "admincmds", "help", "report", "suggest", "testcmds", "tickets"]
 
 for cog in cogs:
     client.load_extension("cogs." + cog)
