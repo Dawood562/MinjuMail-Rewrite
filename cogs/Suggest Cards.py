@@ -10,7 +10,7 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
         self.client = client
 
         
-    @commands.group(invoke_without_command=True, aliases=['s'], description='Suggest cards to be added to the Minju bot! All subommands have a 2 minute cooldown.')
+    @commands.group(invoke_without_command=True, aliases=['s'], description='Suggest cards to be added to the Minju bot! All subcommands have a 2 minute cooldown.')
     @discord.ext.commands.dm_only()
     async def suggest(self, ctx):
         await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Suggestion', description='Missing arguments. Please use one of `group`, `drama`, or `soloist`.'))
