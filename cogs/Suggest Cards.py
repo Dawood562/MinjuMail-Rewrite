@@ -10,11 +10,14 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
         self.client = client
 
         
-    @commands.group(invoke_without_command=True, aliases=['s'])
+    @commands.group(invoke_without_command=True, aliases=['s'], description='Suggest cards to be added to the Minju bot! All subommands have a 2 minute cooldown.')
+    @discord.ext.commands.dm_only()
     async def suggest(self, ctx):
         await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Suggestion', description='Missing arguments. Please use one of `group`, `drama`, or `soloist`.'))
     
-    @suggest.group(aliases=['groups', 'g'])
+    @suggest.group(aliases=['groups', 'g'], description='Suggest a group for the bot.')
+    @discord.ext.commands.dm_only()
+    @commands.cooldown(1,120,commands.BucketType.user)
     async def group(self, ctx):
         AArtist = ""
         AGender = ""
@@ -84,7 +87,9 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                     break
     
     
-    @suggest.group(aliases=['solo', 's'])
+    @suggest.group(aliases=['solo', 's'], description='Suggest a soloist for the bot.')
+    @discord.ext.commands.dm_only()
+    @commands.cooldown(1,120,commands.BucketType.user)
     async def soloist(self, ctx):
         AArtist = ""
         AGender = ""
@@ -151,13 +156,15 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                     return await ctx.send(f'You reacted with {reaction}... start again.')
                     break
         
-    @suggest.group(aliases=['kdrama', 'k-drama', 'd', 'k'])
+    @suggest.group(aliases=['kdrama', 'k-drama', 'd', 'k'], description='Suggest a k-drama for the bot.')
+    @discord.ext.commands.dm_only()
+    @commands.cooldown(1,120,commands.BucketType.user)
     async def drama(self, ctx):
         await ctx.send('Suggest drama yes? Drama name?')
         # sex
     
     @suggest.group(aliases=['cards'])
-    @discord.ext.commands.dm_only()
+
     @commands.cooldown(1,900,commands.BucketType.user)
     async def card(self, ctx):
         print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card Suggestion started by {ctx.message.author}')
