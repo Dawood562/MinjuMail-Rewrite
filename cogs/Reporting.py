@@ -8,7 +8,7 @@ class Reporting(commands.Cog, name='🗨️ Reporting'):
         self.client = client
 
 
-    @commands.command()
+    @commands.command(description='Report a bug or player.')
     async def report(self, ctx):
         await ctx.send('Reporting has begun. From scratch. I hate my life.')
 
