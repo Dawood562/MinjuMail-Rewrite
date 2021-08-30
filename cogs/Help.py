@@ -30,13 +30,14 @@ class MyHelp(commands.HelpCommand):
     # _help <cog name>
     async def send_cog_help(self, cog):
         cmdnames = [command.name for command in cog.get_commands()]
-
-        for command in cog.get_commands():
-            filtered = await self.filter_commands(command, sort=True)
-            command_signatures = [self.get_command_signature(c) for c in filtered]
-            if command_signatures:
-                desc = '\n'.join(command_signatures)
-        embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
+        print(cog.get_commands())
+        print([command for command in cog.get_commands()])
+        print(cmdnames)
+        #for command in cog.get_commands():
+        #    command_signatures = [self.get_command_signature(c) for c in command]
+        #    if command_signatures:
+        #        desc = '\n'.join(command_signatures)
+        #embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}')
     
     
     # _help <group name>
