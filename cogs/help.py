@@ -9,22 +9,18 @@ ccids = [364045258004365312, 167625500498329600, 221188745414574080, 69495367971
 
 class MyHelp(commands.HelpCommand):
     def get_command_signature(self, command):
-        return '%s%s %s' % (self.clean_prefix, command.qualified_name, command.signature)
+        return '{0.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
 
     
     # _help
     async def send_bot_help(self, mapping):
-        for cog in mapping:
-            await self.get_destination().send(f'{cog.qualified_name}: {[command.name for command in mapping[cog]]}')
-        
-        
-        #embed = discord.Embed(title="Help")
-        #for cog, commands in mapping.items():
-            #filtered = await self.filter_commands(commands, sort=True)
-            #command_signatures = [self.get_command_signature(c) for c in filtered]
-            #if command_signatures:
-            #    cog_name = getattr(cog, "qualified_name", "No Category")
-            #    embed.add_field(name=cog_name, value="\n".join(command_signatures), inline=False)
+        embed = discord.Embed(title="Help")
+        for cog, commands in mapping.items():
+            filtered = await self.filter_commands(commands, sort=True)
+            command_signatures = [self.get_command_signature(c) for c in filtered]
+            if command_signatures:
+                cog_name = getattr(cog, "qualified_name", "No Category")
+                embed.add_field(name=f'a{cog_name}', value="\n".join(command_signatures), inline=False)
 
                 
     # _help <cog name>
@@ -34,9 +30,9 @@ class MyHelp(commands.HelpCommand):
     
     # _help <group name>
     async def send_group_help(self, group):
-        await self.get_destination().send(f'{group.name}: {[command.name for index, command in enumerate(group.commands)]}')
+        subcommands = [command.name for index, command in enumerate(group.commands)]
+        await self.get_destination().send(f'{group.name}: {subcommands}')
 
-    
     
     # _help <command name>
     async def send_command_help(self, command):
