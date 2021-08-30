@@ -29,7 +29,7 @@ class MyHelp(commands.HelpCommand):
                 
     # _help <cog name>
     async def send_cog_help(self, cog):
-        await self.get_dsestination().send(f'{cog.qualified_name}: {[command.name for command in cog.get_commands()]}')
+        await self.get_destination().send(f'{cog.qualified_name}: {[command.name for command in cog.get_commands()]}')
     
     
     # _help <group name>
