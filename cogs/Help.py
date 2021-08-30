@@ -29,10 +29,6 @@ class MyHelp(commands.HelpCommand):
                 
     # _help <cog name>
     async def send_cog_help(self, cog):
-        cmdnames = [command.name for command in cog.get_commands()]
-        print(cog.get_commands())
-        print([command for command in cog.get_commands()])
-        print(cmdnames)
         command_signatures = [self.get_command_signature(command) for command in cog.get_commands()]
         desc = None
         if command_signatures:
@@ -42,8 +38,14 @@ class MyHelp(commands.HelpCommand):
     
     # _help <group name>
     async def send_group_help(self, group):
-        subcommands = [command.name for index, command in enumerate(group.commands)]
+        scmdname = [command.name for index, command in enumerate(group.commands)]
+        scmddesc = [command.description for index, command in enumerate(group.commands)]
+        command_signatures = [self.get_command_signature(command) for command in cog.get_commands()]
         await self.get_destination().send(f'{group.name}: {subcommands}')
+        embed = discord.Embed(title=f'Help for {group}', description=f'**{group.description}**')
+        for i in range(len(scmd)-1):
+            embed.add_field(name=f'{scmdname[i]}', value=f"a{scmddesc[i]}", inline=True)
+        await self.get_destination().send(embed=embed)
 
     
     # _help <command name>
