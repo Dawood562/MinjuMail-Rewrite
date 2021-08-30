@@ -27,6 +27,7 @@ class MyHelp(commands.HelpCommand):
             if command_signatures:
                 cog_name = getattr(cog, "qualified_name", "Miscellaneous")
                 embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
+        embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
                 
     # _help <cog name>
@@ -36,6 +37,7 @@ class MyHelp(commands.HelpCommand):
         if command_signatures:
             desc = '\n'.join(command_signatures)
         embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}', color=random.choice(embedcolours))
+        embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
     
     # _help <group name>
@@ -57,6 +59,7 @@ class MyHelp(commands.HelpCommand):
     async def on_help_command_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
             embed = discord.Embed(title="Error", description=str(error))
+            embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
             await ctx.send(embed=embed)
         else:
             raise error
