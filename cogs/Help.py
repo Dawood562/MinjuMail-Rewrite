@@ -30,8 +30,11 @@ class MyHelp(commands.HelpCommand):
     # _help <cog name>
     async def send_cog_help(self, cog):
         cmdnames = [command.name for command in cog.get_commands()]
-        embed = discord.Embed(title=f'{cog} Help')
-        await self.get_destination().send(f'{cog.qualified_name}: {cmdnames}')
+        desc = ''
+        for i in cmdnames:
+            desc += i+'\n'
+        embed = discord.Embed(title=f'{cog[2:]} Help', description=f'')
+        await self.get_destination().send(embed=embed)
     
     
     # _help <group name>
