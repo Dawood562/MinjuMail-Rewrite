@@ -12,6 +12,7 @@ attributes = {
 
 
 class MyHelp(commands.HelpCommand):
+    """Get help with commands!"""
     def get_command_signature(self, command):
         return '{0.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
     
@@ -52,7 +53,7 @@ class MyHelp(commands.HelpCommand):
             raise error
 
 
-class Help(commands.Cog):
+class Help(commands.Cog, name='🤔 Help', description='Get help with commands!'):
     """Get help with commands!"""
     def __init__(self, client):
         self.client = client
