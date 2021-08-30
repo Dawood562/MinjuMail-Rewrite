@@ -18,7 +18,8 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
 
     @commands.command(description='Bot information.')
     async def bot(self, ctx):
-        embed = discord.Embed(title='Bot Information')
+        embed = discord.Embed(title='Bot Information', color=random.choice(embedcolours))
+        embed.set_thumbnail('https://cdn.discordapp.com/attachments/780189371256668210/882035565653004368/dubu.png')
         embed.set_author(name='Bot', icon_url=ctx.author.avatar_url)
         embed.add_field(name='Latency', value=f'{round(self.client.latency*1000, 1)}ms', inline=True)
         embed.add_field(name='Members in Minju Support', value=f'{self.client.get_guild(714926445595721820).member_count}', inline=True)
@@ -27,7 +28,6 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
-        await ctx.send(f"{days}d, {hours}h, {minutes}m, {seconds}s")
         uptime = f'{days}d, {hours}h, {minutes}m, {seconds}s'
         embed.add_field(name='Uptime', value=f'{uptime}', inline=True)
 
