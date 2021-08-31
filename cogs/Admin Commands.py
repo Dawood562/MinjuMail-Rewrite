@@ -75,7 +75,10 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
                 for j in result[i]:
                     msg += f"{j}, "
                 msg = msg[:-2] + '\n'
-            await ctx.reply(msg)
+            if msg == '\n':
+                await ctx.reply('Nothing found.')
+            else:
+                await ctx.reply(msg)
         else:
             database.commit()
             await ctx.reply('Successfully comitted changes.')
