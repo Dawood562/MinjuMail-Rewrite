@@ -63,9 +63,9 @@ class MyHelp(commands.HelpCommand):
             aliases = None
         else:
             aliases = []
-           for i in range(len(command.aliases)):
-               aliases.append(f'`{command.aliases[i]}`')
-               aliases = ', '.join(aliases)
+            for i in range(len(command.aliases)):
+                aliases.append(f'`{command.aliases[i]}`')
+                aliases = ', '.join(aliases)
         embed.add_field(name='Aliases', value=aliases, inline=False)
         embed.add_field(name='Usage', value=self.get_command_signature(command), inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
