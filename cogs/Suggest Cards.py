@@ -188,7 +188,7 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
     async def drama(self, ctx):
         AArtist = ""
         while AArtist != "cancel":
-            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest a K-Drama!', description='Please remember that this should only be used if the K-Drama is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`!))
+            await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest a K-Drama!', description='Please remember that this should only be used if the K-Drama is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`!'))
             QGroup = discord.Embed(color=random.choice(embedcolours), title="K-Drama/Movie Name (Without special characters):")
             await ctx.send(embed=QGroup)
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
