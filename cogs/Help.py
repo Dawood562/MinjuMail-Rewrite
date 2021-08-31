@@ -53,7 +53,7 @@ class MyHelp(commands.HelpCommand):
         await self.get_destination().send(f'CMD qualified name(s?): {[command.qualified_name for command in group.commands]}')
         await self.get_destination().send(f'Group name: {group}, {group.name}')
         cmdaliases = [command.aliases for command in group.commands]
-        await self.get_destination().send(f'CMD Aliases: {cmdaliases})
+        await self.get_destination().send(f'CMD Aliases: {cmdaliases}')
         tostrip = f'_{group.name} '
         arg_subcmds = '`<'
         for i in command_signatures:
