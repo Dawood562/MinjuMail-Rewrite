@@ -2,7 +2,9 @@ import discord
 import os
 from datetime import datetime
 from discord.ext import commands
+import traceback
 import sqlite3
+import sys
 database = sqlite3.connect('./database/dB.db')
 cursor = database.cursor()
 
@@ -71,7 +73,13 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
             try:
                 cursor.execute(query)
             except sqlite3.IntegrityError as e:
-                await ctx.reply(e)
+                if e[:24] == 'UNIQUE constraint failed':
+                    await ctx.reply('That group is already in the database.')
+                else:
+                    await ctx.reply(e)
+            except Exception as e:
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                await ctx.reply('Unexpected error:\n\n' + ''.join(traceback.format_exception(exc_type, exc_value, exc_tb)))
             else:
                 if query[:6].lower() == 'select':
                     msg = ''
