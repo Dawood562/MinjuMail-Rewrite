@@ -4,6 +4,10 @@ from discord.ext import commands
 import random
 embedcolours = [discord.Color.from_rgb(217,89,140), discord.Color.from_rgb(241,210,231), discord.Color.from_rgb(243,170,81), discord.Color.from_rgb(252,246,149), discord.Color.from_rgb(86,122,206), discord.Color.from_rgb(183,211,233), discord.Color.from_rgb(187,176,220), discord.Color.from_rgb(219,112,108), discord.Color.from_rgb(241,195,170), discord.Color.from_rgb(206,229,213), discord.Color.from_rgb(254,254,254), discord.Color.from_rgb(167,224,225)]
 
+import sqlite3
+database = sqlite3.connect('./database/dB.db')
+cursor = database.cursor()
+
 class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
     """Suggest cards to be added to the Minju bot!"""
     def __init__(self, client):
@@ -32,7 +36,13 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                 await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title="Group Suggestion", description="Suggestion process has been cancelled."))
                 break
             else:
-                pass
+                cursor.execute("SELECT requester FROM Cards WHERE UPPER(name)='{AArtist.upper()}';")
+                result = cursor.fetchone()[0]
+                if result:
+                    await ctx.reply(f'{AArtist} has already been suggested.')
+                    break
+                else:
+                    pass
             ##################
             QGender = discord.Embed(color=random.choice(embedcolours), title='Group Gender (Male, Female, or Mixed):')
             await ctx.send(embed=QGender)
