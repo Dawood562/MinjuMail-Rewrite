@@ -26,9 +26,6 @@ class MyHelp(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title="Help", color=random.choice(embedcolours))
         for cog, commands in mapping.items():
-            await self.get_destination().send(f'Cog, Commands: {cog, commands}')
-            await self.get_destination().send(f'mapping: {mapping}')
-            await self.get_destination().send(f'mapping.items: {mapping.items}')
             filtered = await self.filter_commands(commands, sort=True)
             command_signatures = [self.get_command_signature(c) for c in filtered]
             if command_signatures:
@@ -40,9 +37,14 @@ class MyHelp(commands.HelpCommand):
     # _help <cog name>
     async def send_cog_help(self, cog):
         command_signatures = [self.get_command_signature(command) for command in cog.get_commands()]
+        commands = [command for command in cog.get_commands()]
+        filtered = await self.filter_commands(commands, sort=True)
+        command_signatures = [self.get_command_signature(c) for c in filtered]
         desc = None
         if command_signatures:
             desc = '\n'.join(command_signatures)
+        else:
+            await self.context.reply(f'No category called {cog} found.')
         embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}', color=random.choice(embedcolours))
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.context.reply(embed=embed)
