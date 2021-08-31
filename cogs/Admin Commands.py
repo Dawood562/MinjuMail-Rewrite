@@ -2,6 +2,10 @@ import discord
 import os
 from datetime import datetime
 from discord.ext import commands
+import sqlite3
+database = sqlite3.connect('./database/dB.db')
+cursor = database.cursor()
+
 
 class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
     """Admin Commands: Load/unload cogs and shut the bot down."""
