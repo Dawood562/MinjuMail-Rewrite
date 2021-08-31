@@ -66,9 +66,8 @@ class MyHelp(commands.HelpCommand):
             aliases = None
         else:
             aliases = []
-            for i in range(len(cmdaliases)):
-                aliases.append(f'`{cmdaliases[i]}`')
-                aliases = ', '.join(aliases)
+            for i in cmdaliases:
+                aliases += f'{i}, '
         embed.add_field(name=f'Aliases', value=aliases, inline=False)
 
         embed.add_field(name=f'Usage', value='\n'.join(command_signatures), inline=Falase)
