@@ -62,6 +62,7 @@ class MyHelp(commands.HelpCommand):
         if len(command.aliases) == 0:
             aliases = None
         else:
+            aliases = []
            for i in range(len(command.aliases)):
                aliases.append(f'`{command.aliases[i]}`')
                aliases = ', '.join(aliases)
