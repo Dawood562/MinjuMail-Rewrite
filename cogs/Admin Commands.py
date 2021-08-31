@@ -70,8 +70,10 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
         query = ' '.join(query)
         cursor.execute(query)
         if query[:6].lower() == 'select':
-            print(cursor.fetchall())
-            #await ctx.reply(str('\n'.join(cursor.fetchall())))
+            msg = ''
+            for i in '\n'.join(cursor.fetchall()):
+                msg += f"{', '.join(i)}\n"
+            await ctx.reply(msg)
         else:
             database.commit()
             await ctx.reply('Successfully comitted changes.')
