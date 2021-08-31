@@ -26,6 +26,9 @@ class MyHelp(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title="Help", color=random.choice(embedcolours))
         for cog, commands in mapping.items():
+            await self.get_destination().send(f'Cog, Commands: {cog, commands}')
+            await self.get_destination().send(f'mapping: {mapping}')
+            await self.get_destination().send(f'mapping.items: {mapping.items}')
             filtered = await self.filter_commands(commands, sort=True)
             command_signatures = [self.get_command_signature(c) for c in filtered]
             if command_signatures:
