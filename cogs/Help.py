@@ -10,6 +10,7 @@ embedcolours = [discord.Color.from_rgb(217,89,140), discord.Color.from_rgb(241,2
 attributes = {
    'name': "help",
    'aliases': ["h"],
+   'description': "Get help with commands."
 }
 
 
