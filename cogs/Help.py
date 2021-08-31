@@ -46,16 +46,7 @@ class MyHelp(commands.HelpCommand):
     
     # _help <group name>
     async def send_group_help(self, group):
-        scmdname = [command.name for index, command in enumerate(group.commands)]
-        scmddesc = [command.description for index, command in enumerate(group.commands)]
         command_signatures = [self.get_command_signature(command) for command in group.commands]
-        await self.get_destination().send(f'CMD Signatures: {command_signatures}')
-        await self.get_destination().send(f'CMD qualified name(s?): {[command.qualified_name for command in group.commands]}')
-        await self.get_destination().send(f'Group name: {group}, {group.name}')
-        cmdaliases = [command.aliases for command in group.commands]
-        await self.get_destination().send(f'CMD Aliases: {cmdaliases}')
-        await self.get_destination().send(f'Group Aliases: {group.aliases}')
-        await self.get_destination().send(f'Group Desc: {group.description}')
         tostrip = f'_{group.name} '
         arg_subcmds = '<'
         for i in command_signatures:
