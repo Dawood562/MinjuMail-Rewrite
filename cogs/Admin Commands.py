@@ -59,5 +59,14 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
             await self.client.close()
             exit()
 
+    @commands.has_role(737604230759841792)
+    @commands.command(description='Perform a query. Please don\'t fucking abuse this.')
+    async def query(self, ctx, *query: str):
+        cursor.execute(f'{query}')
+        if query[:6].lower() == 'select':
+            await ctx.reply('\n'.join(cursor.fetchall()))
+        else:
+            database.commit()
+            await ctx.reply('Successfully comitted changes.')
 def setup(client):
     client.add_cog(Admin_Commands(client))
