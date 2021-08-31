@@ -81,8 +81,7 @@ class MyHelp(commands.HelpCommand):
     
     # _help <command name>
     async def send_command_help(self, command):
-        await self.get_destination().send(self.get_command_signature(command))
-        if self.get_command_signature(command):
+        if await self.filter_commands(command, sort=True):
             embed = discord.Embed(title=f"Help for {command.name}", description=f'Displaying help for {command.name}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
             embed.add_field(name='Description', value=command.description, inline=False)
             if len(command.aliases) == 0:
