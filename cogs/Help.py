@@ -61,7 +61,10 @@ class MyHelp(commands.HelpCommand):
         for i in command_signatures:
             arg_subcmds += f"{i.replace(tostrip, '').strip('`')}|"
         arg_subcmds = f'{arg_subcmds[:-1]}>'
-
+        if arg_subcmds == '>':
+            arg_subcmds = None
+        else:
+            arg_subcmds = f'`{arg_subcmds}`'
         if len(group.aliases) == 0:
             aliases = None
         else:
@@ -72,7 +75,10 @@ class MyHelp(commands.HelpCommand):
         embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
         embed.add_field(name=f'Description', value=group.description, inline=False)
         embed.add_field(name=f'Aliases', value=aliases, inline=False)
-        embed.add_field(name=f'Usage', value=f'`_{group.name}` `{arg_subcmds}`', inline=False)
+        if arg_subcmds:
+           embed.add_field(name=f'Usage', value=f'`_{group.name}` {arg_subcmds}', inline=False)
+        else:
+           embed.add_field(name=f'Usage', value=f'`_{group}`', inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
