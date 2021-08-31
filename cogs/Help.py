@@ -55,10 +55,11 @@ class MyHelp(commands.HelpCommand):
         cmdaliases = [command.aliases for command in group.commands]
         await self.get_destination().send(f'CMD Aliases: {cmdaliases}')
         await self.get_destination().send(f'Group Aliases: {group.aliases}')
+        await self.get_destination().send(f'Group Desc: {group.description}')
         tostrip = f'_{group.name} '
         arg_subcmds = '`<'
         for i in command_signatures:
-            arg_subcmds += f'{i.replace(tostrip, '')}|'
+            arg_subcmds += f"{i.replace(tostrip, '')}|"
         arg_subcmds = f'{arg_subcmds[:-1]}>`'
 
         embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
