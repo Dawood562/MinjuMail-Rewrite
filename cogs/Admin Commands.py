@@ -66,21 +66,24 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
     @commands.has_role(737604230759841792)
     @commands.command(description='Perform a query. Please don\'t fucking abuse this.')
     async def query(self, ctx, *query: str):
-        query = ' '.join(query)
-        cursor.execute(query)
-        if query[:6].lower() == 'select':
-            msg = ''
-            result = cursor.fetchall()
-            for i in range(len(result)):
-                for j in result[i]:
-                    msg += f"{j}, "
-                msg = msg[:-2] + '\n'
-            if not msg:
-                await ctx.reply('Nothing found.')
+        if query:
+            query = ' '.join(query)
+            cursor.execute(query)
+            if query[:6].lower() == 'select':
+                msg = ''
+                result = cursor.fetchall()
+                for i in range(len(result)):
+                    for j in result[i]:
+                        msg += f"{j}, "
+                    msg = msg[:-2] + '\n'
+                if msg:
+                    await ctx.reply(msg)
+                else:
+                    await ctx.reply('Nothing found.')
             else:
-                await ctx.reply(msg)
+                database.commit()
+                await ctx.reply('Successfully comitted changes.')
         else:
-            database.commit()
-            await ctx.reply('Successfully comitted changes.')
+            await ctx.reply('Please give a query.')
 def setup(client):
     client.add_cog(Admin_Commands(client))
