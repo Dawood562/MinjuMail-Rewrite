@@ -39,9 +39,11 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                 cursor.execute("SELECT requester FROM Cards WHERE UPPER(name)='{AArtist.upper()}';")
                 result = cursor.fetchone()[0]
                 if result:
-                    await ctx.reply(f'{AArtist} has already been suggested.')
+                    print('Suggested existing.')
+                    await MessageReply.reply(f'{AArtist} has already been suggested.')
                     break
                 else:
+                    print('Is fine')
                     pass
             ##################
             QGender = discord.Embed(color=random.choice(embedcolours), title='Group Gender (Male, Female, or Mixed):')
