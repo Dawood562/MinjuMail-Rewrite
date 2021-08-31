@@ -54,10 +54,11 @@ class MyHelp(commands.HelpCommand):
         await self.get_destination().send(f'Group name: {group}, {group.name}')
         cmdaliases = [command.aliases for command in group.commands]
         await self.get_destination().send(f'CMD Aliases: {cmdaliases}')
+        await self.get_destination().send(f'Group Aliases: {group.aliases}')
         tostrip = f'_{group.name} '
         arg_subcmds = '`<'
         for i in command_signatures:
-            arg_subcmds += f'{i[len(tostrip):-1]}|'
+            arg_subcmds += f'{i.replace(tostrip, '')}|'
         arg_subcmds = f'{arg_subcmds[:-1]}>`'
 
         embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
@@ -65,7 +66,7 @@ class MyHelp(commands.HelpCommand):
         #    embed.add_field(name=f'{scmdname[i].capitalize()}', value=f"{scmddesc[i]}", inline=True)
         embed.add_field(name=f'Description', value=f"{' '.join(scmddesc)}", inline=False)
         embed.add_field(name=f'Aliases', value=cmdaliases, inline=False)
-        embed.add_field(name=f'Usage', value=f'_{group.name} {arg_subcmds}', inline=False)
+        embed.add_field(name=f'Usage', value=f'`_{group.name}` {arg_subcmds}', inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
