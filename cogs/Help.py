@@ -32,7 +32,7 @@ class MyHelp(commands.HelpCommand):
                 cog_name = getattr(cog, "qualified_name", "Miscellaneous")
                 embed.add_field(name=f'{cog_name}', value="\n".join(command_signatures), inline=True)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
-        await self.get_destination().reply(embed=embed)
+        await self.context.reply(embed=embed)
                 
     # _help <cog name>
     async def send_cog_help(self, cog):
@@ -42,7 +42,7 @@ class MyHelp(commands.HelpCommand):
             desc = '\n'.join(command_signatures)
         embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}', color=random.choice(embedcolours))
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
-        await self.get_destination().reply(embed=embed)
+        await self.context.reply(embed=embed)
     
     # _help <group name>
     async def send_group_help(self, group):
@@ -71,7 +71,7 @@ class MyHelp(commands.HelpCommand):
         else:
            embed.add_field(name=f'Usage', value=f'`_{group}`', inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
-        await self.get_destination().reply(embed=embed)
+        await self.context.reply(embed=embed)
 
     
     # _help <command name>
@@ -88,7 +88,7 @@ class MyHelp(commands.HelpCommand):
         embed.add_field(name='Aliases', value=aliases, inline=False)
         embed.add_field(name='Usage', value=self.get_command_signature(command), inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
-        await self.get_destination().reply(embed=embed)
+        await self.context.reply(embed=embed)
 
     async def on_help_command_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
