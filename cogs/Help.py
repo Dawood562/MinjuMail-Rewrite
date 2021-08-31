@@ -96,7 +96,7 @@ class MyHelp(commands.HelpCommand):
             embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
             await self.context.reply(embed=embed)
         else:
-            await self.get_destination().send(f'No command called "{command.name}" found.'})
+            await self.get_destination().send(f'No command called "{command.name}" found.')
 
 
     async def on_help_command_error(self, ctx, error):
