@@ -52,25 +52,20 @@ class MyHelp(commands.HelpCommand):
         await self.get_destination().send(f'CMD Signatures: {command_signatures}')
         await self.get_destination().send(f'CMD qualified name(s?): {[command.qualified_name for command in group.commands]}')
         await self.get_destination().send(f'Group name: {group}, {group.name}')
-        tostrip = f'_{group.name} '
-        arg_subcmds = '<'
-        for i in scmdname:
-            arg_subcmds += f'{i}|'
-        arg_subcmds = f'{arg_subcmds[:-1]}>'
-        embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
-        for i in range(len(scmdname)):
-            embed.add_field(name=f'{scmdname[i].capitalize()}', value=f"{scmddesc[i]}", inline=True)
-        embed.add_field(name=f'Description', value=f"{' '.join(scmddesc)}", inline=False)
         cmdaliases = [command.aliases for command in group.commands]
-        if len(cmdaliases) == 0:
-            aliases = None
-        else:
-            aliases = []
-            for i in cmdaliases:
-                aliases += f'{i}, '
-        embed.add_field(name=f'Aliases', value=aliases, inline=False)
+        await self.get_destination().send(f'CMD Aliases: {cmdaliases})
+        tostrip = f'_{group.name} '
+        arg_subcmds = '`<'
+        for i in command_signatures:
+            arg_subcmds += f'{i[len(tostrip):-1]}|'
+        arg_subcmds = f'{arg_subcmds[:-1]}>`'
 
-        embed.add_field(name=f'Usage', value='\n'.join(command_signatures), inline=False)
+        embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
+        #for i in range(len(scmdname)):
+        #    embed.add_field(name=f'{scmdname[i].capitalize()}', value=f"{scmddesc[i]}", inline=True)
+        embed.add_field(name=f'Description', value=f"{' '.join(scmddesc)}", inline=False)
+        embed.add_field(name=f'Aliases', value=cmdaliases, inline=False)
+        embed.add_field(name=f'Usage', value=f'_{group.name} {arg_subcmds}', inline=False)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
