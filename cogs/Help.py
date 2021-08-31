@@ -71,7 +71,7 @@ class MyHelp(commands.HelpCommand):
                 aliases = ', '.join(aliases)
         embed.add_field(name=f'Aliases', value=aliases, inline=True)
 
-        embed.add_field(name=f'Usage', value=self.get_command_signature(command), inline=True)
+        embed.add_field(name=f'Usage', value='\n'.join(command_signatures), inline=True)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
