@@ -37,7 +37,7 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                 break
             else:
                 cursor.execute("SELECT * FROM Cards WHERE UPPER(aname)='{AArtist.upper()}';")
-                result = cursor.fetchone()
+                result = cursor.fetchall()[0]
                 print(result)
                 if result:
                     print('Suggested existing.')
