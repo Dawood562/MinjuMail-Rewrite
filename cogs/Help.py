@@ -43,11 +43,11 @@ class MyHelp(commands.HelpCommand):
         desc = None
         if command_signatures:
             desc = '\n'.join(command_signatures)
+            embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}', color=random.choice(embedcolours))
+            embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
+            await self.context.reply(embed=embed)
         else:
-            await self.context.reply(f'No category called {cog} found.')
-        embed = discord.Embed(title=f'{cog.qualified_name[2:]} Help', description=f'**{cog.__doc__}**\n\n{desc}', color=random.choice(embedcolours))
-        embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
-        await self.context.reply(embed=embed)
+            await self.context.reply(f'No category called {cog.qualified_name} found.')
     
     # _help <group name>
     async def send_group_help(self, group):
