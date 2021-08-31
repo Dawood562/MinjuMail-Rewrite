@@ -47,7 +47,7 @@ class MyHelp(commands.HelpCommand):
             embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
             await self.context.reply(embed=embed)
         else:
-            await self.context.reply(f'No category called {cog.qualified_name} found.')
+            await self.context.reply(f'No category called "{cog.qualified_name}" found.')
     
     # _help <group name>
     async def send_group_help(self, group):
@@ -81,19 +81,23 @@ class MyHelp(commands.HelpCommand):
     
     # _help <command name>
     async def send_command_help(self, command):
-        embed = discord.Embed(title=f"Help for {command.name}", description=f'Displaying help for {command.name}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
-        embed.add_field(name='Description', value=command.description, inline=False)
-        if len(command.aliases) == 0:
-            aliases = None
+        if self.get_command_signature(command):
+            embed = discord.Embed(title=f"Help for {command.name}", description=f'Displaying help for {command.name}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
+            embed.add_field(name='Description', value=command.description, inline=False)
+            if len(command.aliases) == 0:
+                aliases = None
+            else:
+                aliases = []
+                for i in range(len(command.aliases)):
+                    aliases.append(f'`{command.aliases[i]}`')
+                    aliases = ', '.join(aliases)
+            embed.add_field(name='Aliases', value=aliases, inline=False)
+            embed.add_field(name='Usage', value=self.get_command_signature(command), inline=False)
+            embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
+            await self.context.reply(embed=embed)
         else:
-            aliases = []
-            for i in range(len(command.aliases)):
-                aliases.append(f'`{command.aliases[i]}`')
-                aliases = ', '.join(aliases)
-        embed.add_field(name='Aliases', value=aliases, inline=False)
-        embed.add_field(name='Usage', value=self.get_command_signature(command), inline=False)
-        embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
-        await self.context.reply(embed=embed)
+            await self.get_destination().send(f'No command called "{command.name}" found.'})
+
 
     async def on_help_command_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
