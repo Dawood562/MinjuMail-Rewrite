@@ -71,6 +71,9 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
         if query[:6].lower() == 'select':
             msg = ''
             result = cursor.fetchall()
+            print(result)
+            print(result[i])
+            print(', '.join(result[i]))
             for i in range(len(result)):
                 msg += f"{', '.join(result[i])}\n"
             await ctx.reply(msg)
