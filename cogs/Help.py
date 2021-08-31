@@ -52,7 +52,7 @@ class MyHelp(commands.HelpCommand):
         await self.get_destination().send(f'CMD Signatures: {command_signatures}')
         await self.get_destination().send(f'CMD qualified name(s?): {[command.qualified_name for command in group.commands]}')
         await self.get_destination().send(f'Group name: {group}, {group.name}')
-        tostrip = f'_{group} '
+        tostrip = f'_{group.name} '
         arg_subcmds = '<'
         for i in scmdname:
             arg_subcmds += f'{i}|'
@@ -60,18 +60,18 @@ class MyHelp(commands.HelpCommand):
         embed = discord.Embed(title=f'Help for {group.name}', description=f'Displaying help for {group}.\n`<>` marks required parameters.\n`[]` marks optional parameters.', color=random.choice(embedcolours))
         for i in range(len(scmdname)):
             embed.add_field(name=f'{scmdname[i].capitalize()}', value=f"{scmddesc[i]}", inline=True)
-        embed.add_field(name=f'Description', value=f"{' '.join(scmddesc)}", inline=True)
-        
-        if len(command.aliases) == 0:
+        embed.add_field(name=f'Description', value=f"{' '.join(scmddesc)}", inline=False)
+        cmdaliases = [command.aliases for command in group.commands]
+        if len(cmdaliases) == 0:
             aliases = None
         else:
             aliases = []
-            for i in range(len(command.aliases)):
-                aliases.append(f'`{command.aliases[i]}`')
+            for i in range(len(cmdaliases)):
+                aliases.append(f'`{cmdaliases[i]}`')
                 aliases = ', '.join(aliases)
-        embed.add_field(name=f'Aliases', value=aliases, inline=True)
+        embed.add_field(name=f'Aliases', value=aliases, inline=False)
 
-        embed.add_field(name=f'Usage', value='\n'.join(command_signatures), inline=True)
+        embed.add_field(name=f'Usage', value='\n'.join(command_signatures), inline=Falase)
         embed.set_author(name='Help', icon_url=self.context.author.avatar_url)
         await self.get_destination().send(embed=embed)
 
