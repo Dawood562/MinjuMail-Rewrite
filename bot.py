@@ -14,6 +14,12 @@ from datetime import datetime
 import traceback
 import sys
 from lib.functions import *
+import sqlite3
+
+database = sqlite3.connect('./database/dB.db')
+cursor = database.cursor()
+
+
 
 intents = discord.Intents.default()
 intents.members = True
@@ -68,7 +74,11 @@ async def on_command_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
-
+@client.command()
+@commands.is_owner()
+async def create_table(ctx):
+    cursor.execute('CREATE TABLE IF NOT EXISTS Cards (aname TEXT PRIMARY KEY, gender TEXT, type TEXT, votes INT, ingame BIT, requester INT);')
+    database.commit()
 # --Start bot--
 client_token = os.environ.get("TOKEN")
 client.run(client_token)
