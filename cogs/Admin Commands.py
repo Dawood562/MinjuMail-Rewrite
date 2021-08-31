@@ -75,7 +75,7 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
                 for j in result[i]:
                     msg += f"{j}, "
                 msg = msg[:-2] + '\n'
-            if msg == '\n':
+            if not msg:
                 await ctx.reply('Nothing found.')
             else:
                 await ctx.reply(msg)
