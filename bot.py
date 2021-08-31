@@ -79,6 +79,13 @@ async def on_command_error(ctx, error):
 async def create_table(ctx):
     cursor.execute('CREATE TABLE IF NOT EXISTS Cards (aname TEXT PRIMARY KEY, gender TEXT, type TEXT, votes INT, ingame BIT, requester INT);')
     database.commit()
+    await ctx.send('Successfully created table.')
+    cursor.execute('INSERT INTO Cards (aname, gender, type, votes, ingame, requester) VALUES ('TWICE', 'Female', 'Group', 1, 1, NULL);')
+    database.commit()
+    await ctx.send('Added row with information.')
+    cursor.execute('SELECT * FROM Cards')
+    result = cursor.fetchall()
+    await ctx.send(result)
 # --Start bot--
 client_token = os.environ.get("TOKEN")
 client.run(client_token)
