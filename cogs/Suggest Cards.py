@@ -37,7 +37,7 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                 break
             else:
                 cursor.execute("SELECT requester FROM Cards WHERE UPPER(aname)='{AArtist.upper()}';")
-                result = cursor.fetchone()[0]
+                result = cursor.fetchone()
                 if result:
                     print('Suggested existing.')
                     await MessageReply.reply(f'{AArtist} has already been suggested.')
