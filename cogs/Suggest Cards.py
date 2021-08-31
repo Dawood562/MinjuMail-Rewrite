@@ -61,6 +61,9 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                 else:
                     await ctx.send("That's not a valid input! Try again.")
 
+            if AGender.lower() == "cancel":
+                break
+
             ECheck = discord.Embed(title="Card Suggestion", description="Please check the contents below to make sure everything is typed properly!", color=random.choice(embedcolours))
             ECheck.add_field(name="**Artist Name:**", value=f"{AArtist}", inline=False)
             ECheck.add_field(name="**Artist Gender:**", value=f"{AGender}", inline=False)
