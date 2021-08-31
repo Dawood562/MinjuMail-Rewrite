@@ -70,7 +70,7 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
             query = ' '.join(query)
             try:
                 cursor.execute(query)
-            except IntegrityError as e:
+            except sqlite3.IntegrityError as e:
                 await ctx.reply(e)
             else:
                 if query[:6].lower() == 'select':
