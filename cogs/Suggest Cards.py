@@ -36,9 +36,8 @@ class Suggest_Cards(commands.Cog, name='🗨️ Suggest Cards'):
                 await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title="Group Suggestion", description="Suggestion process has been cancelled."))
                 break
             else:
-                cursor.execute("SELECT * FROM Cards WHERE UPPER(aname)='{AArtist.upper()}';")
-                result = cursor.fetchall()[0]
-                print(result)
+                cursor.execute(f"SELECT * FROM Cards WHERE UPPER(aname)='{AArtist.upper()}';")
+                result = cursor.fetchone()
                 if result:
                     print('Suggested existing.')
                     await MessageReply.reply(f'{AArtist} has already been suggested.')
