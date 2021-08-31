@@ -66,7 +66,8 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
     @commands.has_role(737604230759841792)
     @commands.command(description='Perform a query. Please don\'t fucking abuse this.')
     async def query(self, ctx, *query: str):
-        cursor.execute(f'{query}')
+        query = ' '.join(query)
+        cursor.execute(query)
         if query[:6].lower() == 'select':
             await ctx.reply('\n'.join(cursor.fetchall()))
         else:
