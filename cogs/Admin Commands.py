@@ -72,11 +72,11 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
             msg = ''
             result = cursor.fetchall()
             print(result)
-            print(result[i])
-            print(', '.join(result[i]))
             for i in range(len(result)):
+                print(result[i])
+                print(', '.join(result[i]))
                 msg += f"{', '.join(result[i])}\n"
-            await ctx.reply(msg)
+            print(msg)
         else:
             database.commit()
             await ctx.reply('Successfully comitted changes.')
