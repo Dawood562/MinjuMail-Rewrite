@@ -66,14 +66,13 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
     @commands.has_role(737604230759841792)
     @commands.command(description='Perform a query. Please don\'t fucking abuse this.')
     async def query(self, ctx, *query: str):
-        print(query)
         query = ' '.join(query)
         cursor.execute(query)
         if query[:6].lower() == 'select':
             msg = ''
             result = cursor.fetchall()
             for i in range(len(result)):
-                msg += f"{', '.join result[i]}\n"
+                msg += f"{', '.join(result[i])}\n"
             await ctx.reply(msg)
         else:
             database.commit()
