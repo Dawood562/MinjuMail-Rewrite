@@ -1,23 +1,27 @@
+# Import required libraries
 import discord
 from datetime import datetime
 from discord.ext import commands
 import random
 embedcolours = [discord.Color.from_rgb(217,89,140), discord.Color.from_rgb(241,210,231), discord.Color.from_rgb(243,170,81), discord.Color.from_rgb(252,246,149), discord.Color.from_rgb(86,122,206), discord.Color.from_rgb(183,211,233), discord.Color.from_rgb(187,176,220), discord.Color.from_rgb(219,112,108), discord.Color.from_rgb(241,195,170), discord.Color.from_rgb(206,229,213), discord.Color.from_rgb(254,254,254), discord.Color.from_rgb(167,224,225)]
 
+# Create the cog for the commands
 class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
     """Miscellaneous commands."""
     def __init__(self, client):
         self.client = client
 
+    # Basic ping command
     @commands.command(description='Check the latency of the bot.')
     async def ping(self, ctx):
         await ctx.send(f'**Latency:** {round(self.client.latency*1000, 1)}ms')
 
+    # Fun command
     @commands.command(description='Snow.')
     async def snow(self, ctx):
         await ctx.send(f'This bot was coded by Snow (**DaSnow562#0562**). If it breaks, get a Minju\'s Manager to reach out to him to fix it!')
 
-
+    # Command with bot information
     @commands.command(description='Bot information.')
     async def bot(self, ctx):
         embed = discord.Embed(title='Bot Information', description='No, I do not simp for Kim Dahyun.', color=random.choice(embedcolours))
@@ -26,6 +30,7 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
         embed.add_field(name='Developer', value='<@221188745414574080>', inline=False)
         embed.add_field(name='Latency', value=f'{round(self.client.latency*1000, 1)}ms', inline=True)
 
+        # To calculate uptime
         delta_uptime = datetime.utcnow() - self.client.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -41,8 +46,6 @@ class Misc_Commands(commands.Cog, name='❓ Miscellaneous Commands'):
 
         embed.add_field(name='M.S. Members', value=f'{sum(not m.bot for m in self.client.get_guild(714926445595721820).members)} players', inline=True)
         await ctx.send(embed=embed)
-
-        # self.client.get_guild(714926445595721820).member_count
 
 def setup(client):
     client.add_cog(Misc_Commands(client))
