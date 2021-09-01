@@ -99,3 +99,4 @@ class Admin_Commands(commands.Cog, name='👑 Admin Commands'):
             await ctx.reply('Please give a query.')
 def setup(client):
     client.add_cog(Admin_Commands(client))
+# gareth was here 👀
