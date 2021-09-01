@@ -2,7 +2,6 @@
 import asyncio
 import discord
 import os
-import json
 import random
 from discord.embeds import Embed
 from discord.ext import commands
