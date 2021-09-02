@@ -9,7 +9,6 @@ from discord.ext.commands import errors
 from discord.message import Message
 from datetime import datetime
 import traceback
-import youtube_dl
 import sys
 from lib.functions import *
 import sqlite3
@@ -41,7 +40,7 @@ async def on_ready():
 
 
 # Load cogs
-cogs = ["Accept and Reject", "Admin Commands", "Help", "Music", "Misc Commands", "Reporting", "Suggest Cards", "tickets"]
+cogs = ["Accept and Reject", "Admin Commands", "Help", "Misc Commands", "Reporting", "Suggest Cards", "tickets"]
 for cog in cogs:
     client.load_extension("cogs." + cog)
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Loaded {cog} cog')
