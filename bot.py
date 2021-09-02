@@ -9,6 +9,7 @@ from discord.ext.commands import errors
 from discord.message import Message
 from datetime import datetime
 import traceback
+import youtube_dl
 import sys
 from lib.functions import *
 import sqlite3
