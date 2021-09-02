@@ -28,7 +28,7 @@ class Accept_and_Reject(commands.Cog, name='👑 Accept and Reject'):
             # If there is no embed:
             await ctx.send(embed=discord.Embed(title='Error in Accept Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
         except AttributeError:
-            # If there is no embed/it has no title:
+            # If the embed has no title:
             await ctx.send(embed=discord.Embed(title='Error in Accept Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
         except:
             # Unexpected error
@@ -77,6 +77,25 @@ class Accept_and_Reject(commands.Cog, name='👑 Accept and Reject'):
                 VEmbed.add_field(name="**Artist Name:**", value=f"{artist}", inline=False)
                 VEmbed.add_field(name="**Artist Gender:**", value=f"{gender}", inline=False)
                 VEmbed.add_field(name="**Artist Type:**", value=f"{atype}", inline=False)
+                VEmbed.set_footer(text=f'{efooter}')
+                # Sends embed
+                SUGGESTEmbed = await self.client.get_channel(737721977816743966).send(embed=VEmbed)
+                # Adds reaction
+                await SUGGESTEmbed.add_reaction('⬆️')
+                # Sends confirmation of suggestion being accepted
+                await ctx.send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'Card suggestion [here](https://discord.com/channels/774031288318296085/861687628881199104/{msgid}) has been approved by **{ctx.author}**.', color=random.choice(embedcolours)))
+                # Tells suggester their suggestion was accepted.
+                await self.client.get_user(reporterid).send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'[Your bug](https://discord.com/channels/@me/{eauth}) has been approved by **{ctx.author}** and sent to <#737721977816743966>.', color=random.choice(embedcolours)))
+            # If the user suggested a K-Drama or Movie
+            elif asd.embeds[0].title == 'K-Drama/Movie Suggestion':
+                # Gets field values
+                eauth = asd.embeds[0].author.name
+                efooter = asd.embeds[0].footer.text
+                drama = asd.embeds[0].fields[0].value
+                # Generates embed to be sent to suggest-cards
+                VEmbed = discord.Embed(title='K-Drama/Movie Suggestion', description='React with ⬆️ if you would like to see this artist in the game!')
+                VEmbed.add_field(name="**Name:**", value=f"{drama}", inline=False)
+                VEmbed.add_field(name="**Type:**", value="K-Drama/Movie", inline=False)
                 VEmbed.set_footer(text=f'{efooter}')
                 # Sends embed
                 SUGGESTEmbed = await self.client.get_channel(737721977816743966).send(embed=VEmbed)
