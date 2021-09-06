@@ -20,8 +20,8 @@ class tickets(commands.Cog):
             # If a staff reacts to it, ask why. Lock main user out of channel
             # DMs the original user with "Your ticket was closed. Reason:"
             # Creates a log of channel if more than 5 messages.
-        else:
-            pass
+#        else:
+#            pass
         
 def setup(client):
     client.add_cog(tickets(client))
