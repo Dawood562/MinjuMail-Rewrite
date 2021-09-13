@@ -9,9 +9,16 @@ class tickets(commands.Cog):
 #    @commands.Cog.listener()
 #    async def on_raw_reaction(self, ctx):
 #        if ctx.channel_id == ticket_channel_id:
-            # Check if user has an existing channel (using user ID)
-            # If they have, DM them with "no"
-            # Else
+            # Check if the user has an existing channel
+#           existing = False
+#           for channel in (get category via id):
+#               if channel.name[] == str(ctx.user.id):
+#                   existing = True
+            # If the user has an existing ticket
+#           if existing == True:
+#                self.client.get_user(ctx.user.id).send('You already have an existing ticket! Please be patient!')
+#           else:
+            # Make a channel
             # DM User, ask for a reason to start a ticket
             # Add reactions, ask for confirmation
             # Create a channel only staff + user can see under the Ticket category
