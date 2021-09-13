@@ -12,7 +12,7 @@ import traceback
 import sys
 from lib.functions import *
 import sqlite3
-
+import pandas
 
 # Set variables to access the database
 database = sqlite3.connect('./database/dB.db')
