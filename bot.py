@@ -40,7 +40,7 @@ async def on_ready():
 
 
 # Load cogs
-cogs = ["Accept and Reject", "Admin Commands", "Help", "Misc Commands", "Reporting", "Suggest Cards", "tickets"]
+cogs = ["Accept and Reject", "Admin Commands", "Help", "Misc Commands", "Reporting", "Suggest Cards", "Tickets"]
 for cog in cogs:
     client.load_extension("cogs." + cog)
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Loaded {cog} cog')
